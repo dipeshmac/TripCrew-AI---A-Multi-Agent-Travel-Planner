@@ -15,5 +15,3 @@ conda activate
 
 pip install -r requirements.txt
 
-
-postgresql://dipeshmac:pJRiCgzDreCvkDNAeNMpWJjwC3AR3GhF@dpg-dbdh43cs728c73bup2j0-a.oregon-postgres.render.com/agentmemory_1n63
