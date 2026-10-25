@@ -10,6 +10,10 @@ conda create -n travel python=3.11 -y
 2. Activate the Environment
 
 conda activate
+        OR
+conda activate travel
+<!-- for every time you open the project. -->
+
 
 3. Install the requirements
 
