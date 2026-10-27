@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripCrew AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=2">
+</head>
+
+<body>
+
+    <div class="page-bg">
+        <div class="gradient-circle circle-1"></div>
+        <div class="gradient-circle circle-2"></div>
+        <div class="gradient-circle circle-3"></div>
+    </div>
+
+    <!-- Airplane loader: shown while the AI is thinking -->
+    <div id="loaderOverlay" class="loader-overlay hidden" role="status" aria-live="polite">
+        <div class="loader-card">
+            <div class="plane-sky">
+                <svg class="arc" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M 10 100 Q 150 -20 290 100" />
+                </svg>
+                <span class="cloud c1"></span>
+                <span class="cloud c2"></span>
+                <span class="cloud c3"></span>
+                <div class="plane" aria-hidden="true">
+                    <svg viewBox="0 0 64 64"><path d="M62 32 L40 24 L28 4 L22 4 L28 24 L12 22 L6 14 L2 14 L6 32 L2 50 L6 50 L12 42 L28 40 L22 60 L28 60 L40 40 Z"/></svg>
+                </div>
+            </div>
+            <h3 class="loader-title">Your crew is planning your trip</h3>
+            <p id="loaderText" class="loader-text">Understanding your request...</p>
+        </div>
+    </div>
+
+    <main class="app-container">
+
+        <section class="hero-section">
+            <div class="badge">
+                ✈️ TripCrew AI — A Multi-Agent Travel Planner
+            </div>
+
+            <h1>Plan Your Perfect Trip with AI</h1>
+
+            <p>
+                Search flights, discover hotels, and generate a complete travel itinerary using a multi-agent LangGraph system.
+            </p>
+
+            <div class="crew-strip">
+                <span>🛫 Flights agent</span>
+                <span>🏨 Hotels agent</span>
+                <span>🗺️ Itinerary agent</span>
+            </div>
+        </section>
+
+        <section class="planner-card">
+
+            <div class="card-header">
+                <div>
+                    <h2>Where do you want to go?</h2>
+                    <p>Example: Plan a complete 7 days Japan trip from Bangladesh under 2 lakhs.</p>
+                </div>
+
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    Online
+                </div>
+            </div>
+
+            <div class="input-area">
+                <textarea
+                    id="userInput"
+                    placeholder="Plan a complete 7 days Japan trip including flights, hotels and sightseeing under 2 lakhs..."
+                ></textarea>
+
+                <button id="sendBtn" onclick="sendMessage()">
+                    <span id="btnText">Generate Plan</span>
+                    <span id="btnLoader" class="loader hidden"></span>
+                </button>
+            </div>
+
+            <div class="quick-prompts">
+                <button onclick="setPrompt('Plan a complete 7 days Japan trip from Bangladesh including flights, hotels and sightseeing under 2 lakhs.')">Japan Trip</button>
+                <button onclick="setPrompt('Plan a 5 days Dubai trip from Dhaka with flights, hotels and sightseeing.')">Dubai Trip</button>
+                <button onclick="setPrompt('Plan a 7 days Thailand trip from Bangladesh with budget hotels and sightseeing.')">Thailand Trip</button>
+                <button onclick="setPrompt('Give me all country flight info.')">Global Flights</button>
+            </div>
+
+        </section>
+
+        <section id="resultSection" class="result-section hidden">
+
+            <div class="result-header">
+                <div>
+                    <h2>Your AI Travel Plan</h2>
+                    <p id="threadInfo">Thread ID: -</p>
+                </div>
+
+                <div class="result-actions">
+                    <button class="copy-btn" onclick="copyResult()">Copy</button>
+                    <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+                </div>
+            </div>
+
+            <div id="pdfContent" class="pdf-content">
+                <h1 class="pdf-title">AI Travel Plan</h1>
+                <div id="resultBox" class="result-box"></div>
+            </div>
+
+        </section>
+
+        <section id="errorBox" class="error-box hidden"></section>
+
+    </main>
+
+    <footer>
+        Built with FastAPI, LangGraph, Groq, PostgreSQL, Tavily and AviationStack
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="/static/script.js?v=2"></script>
+
+</body>
+</html>
